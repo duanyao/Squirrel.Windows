@@ -115,6 +115,12 @@
 del "$(TargetFileName)"
 ren "$(TargetFileName).tmp" "$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(TargetDir)"
+ren "$(TargetFileName)" "$(TargetFileName).tmp"
+"$(SolutionDir)packages\ILRepack.1.26.0\tools\ILRepack.exe" /target:winexe /out:$(TargetFileName) $(TargetFileName).tmp DeltaCompressionDotNet.MsDelta.dll DeltaCompressionDotNet.PatchApi.dll DeltaCompressionDotNet.dll ICSharpCode.SharpZipLib.dll Microsoft.Web.XmlTransform.dll Newtonsoft.Json.dll Splat.dll Squirrel.dll System.Net.Http.Formatting.dll WpfAnimatedGif.dll
+del "$(TargetFileName).tmp"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
